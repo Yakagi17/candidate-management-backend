@@ -3,12 +3,13 @@ package com.candidatemanagement.exception;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ApiError {
     private HttpStatus status;
     private String title;
     private String message;
-    private ValidationException.FieldError[] details;
+    private List<ValidationException.FieldError> details;
     private LocalDateTime timestamp;
 
     public ApiError() {
@@ -16,10 +17,10 @@ public class ApiError {
     }
 
     public ApiError(HttpStatus status, String title, String message) {
-        this(status, title, message, new ValidationException.FieldError[]{});
+        this(status, title, message, List.of());
     }
 
-    public ApiError(HttpStatus status, String title, String message, ValidationException.FieldError[] details) {
+    public ApiError(HttpStatus status, String title, String message, List<ValidationException.FieldError> details) {
         this();
         this.status = status;
         this.title = title;
@@ -51,9 +52,9 @@ public class ApiError {
         this.message = message;
     }
 
-    public ValidationException.FieldError[] getDetails() {return details;}
+    public List<ValidationException.FieldError> getDetails() {return details;}
 
-    public void setDetails(ValidationException.FieldError[] details) {this.details = details;}
+    public void setDetails(List<ValidationException.FieldError> details) {this.details = details;}
 
     public LocalDateTime getTimestamp() {
         return timestamp;

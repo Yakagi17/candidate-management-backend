@@ -15,7 +15,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST,
                 "Validation Error",
                 "One or more validation errors occurred",
-                (ValidationException.FieldError[]) ex.getErrors().toArray()
+                ex.getErrors()
         );
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
