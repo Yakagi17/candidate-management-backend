@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "12345678-1234-1234-1234-123456789012",
+		"name": "Candidate Management API",
+		"description": "API collection for Candidate and Vacancy Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Candidates",
+			"item": [
+				{
+					"name": "Create Candidate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Siti Rahayu\",\n  \"email\": \"siti.r@example.com\",\n  \"birthdate\": \"1996-05-15\",\n  \"gender\": \"FEMALE\",\n  \"currentSalary\": 5500000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Candidates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Candidate by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates/{{candidateId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates",
+								"{{candidateId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Candidate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Siti Rahayu Updated\",\n  \"email\": \"siti.r@example.com\",\n  \"birthdate\": \"1996-05-15\",\n  \"gender\": \"FEMALE\",\n  \"currentSalary\": 6000000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates/{{candidateId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates",
+								"{{candidateId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Candidate",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates/{{candidateId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates",
+								"{{candidateId}}"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Vacancies",
+			"item": [
+				{
+					"name": "Create Vacancy - Junior Software Engineer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Junior Software Engineer\",\n  \"criteria\": [\n    {\n      \"type\": \"AGE\",\n      \"weight\": 3,\n      \"details\": {\n        \"minAge\": 22,\n        \"maxAge\": 30\n      }\n    },\n    {\n      \"type\": \"GENDER\",\n      \"weight\": 1,\n      \"details\": {\n        \"gender\": \"ANY\"\n      }\n    },\n    {\n      \"type\": \"SALARY_RANGE\",\n      \"weight\": 5,\n      \"details\": {\n        \"minSalary\": 4500000,\n        \"maxSalary\": 6500000\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Vacancy - Senior Data Scientist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Senior Data Scientist\",\n  \"criteria\": [\n    {\n      \"type\": \"AGE\",\n      \"weight\": 4,\n      \"details\": {\n        \"minAge\": 30,\n        \"maxAge\": 45\n      }\n    },\n    {\n      \"type\": \"GENDER\",\n      \"weight\": 2,\n      \"details\": {\n        \"gender\": \"MALE\"\n      }\n    },\n    {\n      \"type\": \"SALARY_RANGE\",\n      \"weight\": 6,\n      \"details\": {\n        \"minSalary\": 7500000,\n        \"maxSalary\": 10000000\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Vacancies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Vacancy by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies/{{vacancyId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies",
+								"{{vacancyId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Vacancy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Junior Software Engineer - Updated\",\n  \"criteria\": [\n    {\n      \"type\": \"AGE\",\n      \"weight\": 4,\n      \"details\": {\n        \"minAge\": 22,\n        \"maxAge\": 32\n      }\n    },\n    {\n      \"type\": \"GENDER\",\n      \"weight\": 1,\n      \"details\": {\n        \"gender\": \"ANY\"\n      }\n    },\n    {\n      \"type\": \"SALARY_RANGE\",\n      \"weight\": 5,\n      \"details\": {\n        \"minSalary\": 4500000,\n        \"maxSalary\": 7000000\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies/{{vacancyId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies",
+								"{{vacancyId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Vacancy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies/{{vacancyId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies",
+								"{{vacancyId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Rank Candidates for Vacancy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/vacancies/{{vacancyId}}/rank-candidates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vacancies",
+								"{{vacancyId}}",
+								"rank-candidates"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Test Data Setup",
+			"item": [
+				{
+					"name": "Create Test Candidate - Siti Rahayu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Siti Rahayu\",\n  \"email\": \"siti.r@example.com\",\n  \"birthdate\": \"1996-05-15\",\n  \"gender\": \"FEMALE\",\n  \"currentSalary\": 5500000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Test Candidate - Budi Santoso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Budi Santoso\",\n  \"email\": \"budi.s@example.com\",\n  \"birthdate\": \"1989-11-20\",\n  \"gender\": \"MALE\",\n  \"currentSalary\": 8000000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Test Candidate - Indah Lestari",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Indah Lestari\",\n  \"email\": \"indah.l@example.com\",\n  \"birthdate\": \"2002-03-01\",\n  \"gender\": \"FEMALE\",\n  \"currentSalary\": 4000000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/candidates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"candidates"
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "candidateId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "vacancyId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
