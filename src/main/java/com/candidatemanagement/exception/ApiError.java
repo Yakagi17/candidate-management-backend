@@ -8,6 +8,7 @@ public class ApiError {
     private HttpStatus status;
     private String title;
     private String message;
+    private ValidationException.FieldError[] details;
     private LocalDateTime timestamp;
 
     public ApiError() {
@@ -15,10 +16,15 @@ public class ApiError {
     }
 
     public ApiError(HttpStatus status, String title, String message) {
+        this(status, title, message, new ValidationException.FieldError[]{});
+    }
+
+    public ApiError(HttpStatus status, String title, String message, ValidationException.FieldError[] details) {
         this();
         this.status = status;
         this.title = title;
         this.message = message;
+        this.details = details;
     }
 
     public HttpStatus getStatus() {
@@ -44,6 +50,10 @@ public class ApiError {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public ValidationException.FieldError[] getDetails() {return details;}
+
+    public void setDetails(ValidationException.FieldError[] details) {this.details = details;}
 
     public LocalDateTime getTimestamp() {
         return timestamp;

@@ -1,10 +1,6 @@
 package com.candidatemanagement.model.criteria;
 
-import com.candidatemanagement.exception.ValidationException;
-
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 public class Criterion {
@@ -33,6 +29,13 @@ public class Criterion {
         private BigDecimal minValue;
         private BigDecimal maxValue;
         private Set<String> options;
+
+        public CriterionDetails() {
+            this.type = null;
+            this.minValue = null;
+            this.maxValue = null;
+            this.options = null;
+        }
 
         public CriterionDetails(String type, BigDecimal minValue, BigDecimal maxValue, Set<String> options) {
             this.type = type;
@@ -99,6 +102,12 @@ public class Criterion {
         public void setOptions(Set<String> options) {
             this.options = options;
         }
+    }
+
+    public Criterion() {
+        this.name = null;
+        this.weight = DEFAULT_WEIGHT;
+        this.details = null;
     }
 
     public Criterion(String name, int weight, CriterionDetails details) {

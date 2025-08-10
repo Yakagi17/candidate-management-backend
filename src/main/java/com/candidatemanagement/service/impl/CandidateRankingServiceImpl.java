@@ -1,6 +1,7 @@
 package com.candidatemanagement.service.impl;
 
 import com.candidatemanagement.dto.CandidateRankingDto;
+import com.candidatemanagement.dto.CandidateScore;
 import com.candidatemanagement.exception.GenericApiException;
 import com.candidatemanagement.factory.CriterionMatcherFactory;
 import com.candidatemanagement.model.Candidate;
@@ -13,9 +14,11 @@ import com.candidatemanagement.service.criteria.CriterionMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class CandidateRankingServiceImpl implements CandidateRankingService {
@@ -48,17 +51,17 @@ public class CandidateRankingServiceImpl implements CandidateRankingService {
         List<Candidate> allCandidates = candidateService.getAllCandidates();
 
         return allCandidates.stream()
-                .map(candidate -> {
-                    int score = calculateScore(candidate, vacancy);
-                    return new CandidateRankingDto(
-                            candidate.getId(),
-                            candidate.getName(),
-                            candidate.getEmail(),
-                            score
-                    );
-                })
-                .sorted((c1, c2) -> Integer.compare(c2.score(), c1.score()))
-                .collect(Collectors.toList());
+                .map(c -> new CandidateScore(c.getId(), c.getName(), c.getEmail(),
+                        calculateScore(c, vacancy))) // temp DTO without rank
+                .sorted(Comparator.comparingInt(CandidateScore::score).reversed())
+                .collect(Collectors.collectingAndThen(Collectors.toList(), list ->
+                        IntStream.range(0, list.size())
+                                .mapToObj(i -> {
+                                    CandidateScore c = list.get(i);
+                                    return new CandidateRankingDto(i + 1, c.id(), c.name(), c.email(), c.score());
+                                })
+                                .toList()
+                ));
     }
 
     private int calculateScore(Candidate candidate, Vacancy vacancy) {

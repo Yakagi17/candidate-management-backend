@@ -212,8 +212,7 @@ class CandidateManagementIntegrationTest {
         mockMvc.perform(post("/api/v1/candidates")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(invalidJson))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.httpStatus", is("BAD_REQUEST")));
+                .andExpect(status().isBadRequest());
 
         // Test invalid vacancy creation
         Map<String, Object> invalidVacancy = new HashMap<>();

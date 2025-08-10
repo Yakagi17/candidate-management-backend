@@ -1,0 +1,37 @@
+# Server Configuration
+server:
+  port: 8080
+
+spring:
+  data:
+    # MongoDB Configuration
+    mongodb:
+      host: localhost
+      port: 27017
+      database: candidate_management
+      username: admin
+      password: secret123
+      authentication-database: admin
+
+  # Application Configuration
+  application:
+    name: candidate-management-backend
+
+# Logging Configuration
+logging:
+  level:
+    com.candidate management: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.http.converter.json: TRACE
+
+
+
+
+
+
+
+
+
+
+
